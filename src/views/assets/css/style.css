@@ -1,0 +1,25 @@
+.form{
+    width: 500px;
+    height: 100%;
+    margin: 100px auto;
+}
+
+.logo{
+    width: 100%;
+}
+
+.card img{
+    margin: 0 auto;
+}
+
+.card img{
+    width: 200px;
+    height: 200px;
+}
+
+.card-text{
+    margin-bottom: 5px;
+}
+.inputNumber{
+    width: 100%;
+}

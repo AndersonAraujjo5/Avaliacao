@@ -1,0 +1,31 @@
+<%- include("includes/head") %>
+<div class="container">
+    <div class="row justify-content-center">
+        <img src="./assets/image/logo.png" style="width: 300px;" class="img-fluid" alt="...">
+    </div>
+    <div class="row align-content-center flex-column" >
+        <% for(var i=0; i < notas.length; i++){ %>
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4 row align-items-center">
+                <img src="./assets/image/logo.png" style="max-width: 200px; width: 100%; height: auto;" class="img-fluid" alt="...">
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%= i+1 %>º lugar</h5>
+                    <p class="card-text"><%= notas[i].nome %></p>
+                </div>
+                <div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><h5 class="card-title">Pontuação <%= notas[i].SUM %></h5></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+
+<%- include("includes/footer") %>

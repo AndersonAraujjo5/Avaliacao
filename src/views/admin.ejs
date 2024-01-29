@@ -1,0 +1,125 @@
+<%- include("includes/admin/head") %>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="table-responsive w-100">
+          <h2>Avaliação final</h2>
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">nome da candidata</th>
+                <th scope="col">Fantasia</th>
+                <th scope="col">Desfile </th>
+                <th scope="col">Beleza plastica</th>
+                <th scope="col">desconto</th>
+                <th scope="col">Total de pontos</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <% if(notaFinal){
+                notaFinal.forEach((e, id) => { %>
+              <tr>
+                <td><%= id+1 %></td>
+                <td><%= e.nome %></td>
+                <td><%= e.fantasia.toFixed(2) %></td>
+                <td><%= e.desfile.toFixed(2) %></td>
+                <td><%= e.beleza.toFixed(2) %></td>
+                <td><%= e.desconto.toFixed(2) %></td>
+                <td><%= e.total.toFixed(2) %></td>
+              </tr>
+              <% }); } %>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+        <div class="table-responsive w-100">
+          <h2>Notas de cada jurado</h2>
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">nome da candidata</th>
+                <th scope="col">nome do jurado</th>
+                <th scope="col">beleza plastica</th>
+                <th scope="col">fantasia </th>
+                <th scope="col">desfile</th>
+                <th scope="col">desconto</th>
+                <th scope="col">Total de pontos</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <% if(notas){
+                notas.forEach(e => { %>
+              <tr>
+                <td><%= e.id %></td>
+                <td><%= e.nome %></td>
+                <td><%= e.nome_jurado %></td>
+                <td><%= e.beleza %></td>
+                <td><%= e.fantasia %></td>
+                <td><%= e.desfile %></td>
+                <td><%= e.desconto %></td>
+                <td><%= e.total %></td>
+              </tr>
+              <% }); } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="table-responsive w-100">
+          <h2>Jurados</h2>
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if(jurados){
+                jurados.forEach(e => { %>
+              <tr>
+                <td><%= e.id %></td>
+                <td><%= e.nome %></td>
+                <td><%= e.user %></td>
+              </tr>
+              <% }); } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="table-responsive w-100">
+          <h2>Candidatas</h2>
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">idade</th>
+                <th scope="col">representa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if(candidatas){
+                candidatas.forEach(e => { %>
+              <tr>
+                <td><%= e.id %></td>
+                <td><%= e.nome %></td>
+                <td><%= e.idade %></td>
+                <td><%= e.representa %></td>
+              </tr>
+              <% }); } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<%- include("includes/footer") %>

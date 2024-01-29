@@ -1,0 +1,204 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form method="post" action="/avaliar">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-bg-danger">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Atenção <br/>  Ao clicar em salvar você não poderar mais mudar as notas</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div class="w-100">
+                <input type="hidden" name="nome" value="<%= candidata.nome %>">
+                <label for="firstName" class="form-label">Fantasia</label>
+                <input oninput="verifAvaliFinal(this)" type="tel" class="form-control inputNumber" id="f" name="fantasia">
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div class="w-100">
+                  <input type="hidden" name="status" value="true">
+                  <label for="firstName" class="form-label">Beleza plasticas</label>
+                  <input oninput="verifAvaliFinal(this)" type="tel" class="form-control inputNumber" id="b" name="beleza">
+                </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div class="w-100">
+                  <label for="firstName" class="form-label">Desfile</label>
+                  <input oninput="verifAvaliFinal(this)" type="tel" class="form-control inputNumber" id="d" name="desfile">
+                </div>
+            </li>
+      
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div class="w-100">
+                  <label for="firstName" class="form-label">desconto</label>
+                  <input oninput="verifAvaliFinal(this)" type="tel" class="form-control inputNumber" id="des" name="desconto">
+                </div>
+            </li>
+      
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total de pontos</span>
+              <strong id="resultado1"></strong>
+            </li>
+          </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+<% if(nota.length == 0){ %>
+<div class="col-md-5 col-lg-4 order-md-last">
+    <form method="post" action="/avaliar">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-primary">Pontuação</span>
+    </h4>
+    <ul class="list-group mb-3">
+      <li class="list-group-item d-flex justify-content-between lh-sm">
+        <div class="w-100">
+          <input type="hidden" name="nome" value="<%= candidata.nome %>">
+          <label for="firstName" class="form-label">Fantasia</label>
+          <input oninput="verifAvali(this)" type="tel" class="form-control inputNumber" id="fantasia" name="fantasia">
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between lh-sm">
+        <div class="w-100">
+            <label for="firstName" class="form-label">Beleza plasticas</label>
+            <input oninput="verifAvali(this)" type="tel" class="form-control inputNumber" id="beleza" name="beleza">
+          </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between lh-sm">
+        <div class="w-100">
+            <label for="firstName" class="form-label">Desfile</label>
+            <input oninput="verifAvali(this)" type="tel" class="form-control inputNumber" id="desfile" name="desfile">
+          </div>
+      </li>
+
+      <li class="list-group-item d-flex justify-content-between lh-sm">
+        <div class="w-100">
+            <label for="firstName" class="form-label">desconto</label>
+            <input oninput="verifAvali(this)" type="tel" class="form-control inputNumber" id="desconto" name="desconto">
+          </div>
+      </li>
+
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Total de pontos</span>
+        <strong id="resultado"></strong>
+      </li>
+    </ul>
+
+    <div class="card p-2">
+      <div class="input-group">
+        <button type="submit" class="btn btn-secondary">Avaliar</button>
+      </div>
+    </div>
+  </form>
+  <!-- Button trigger modal -->
+  <div class="card p-2">
+    <div class="input-group">
+      <button type="button" onclick="final()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Finalizar avaliação
+      </button>
+    </div>
+  </div>
+  </div>
+<% }else if(nota.status == false){ %>
+    <div class="col-md-5 col-lg-4 order-md-last">
+    <form method="post" action="/avaliar">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Pontuação</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div class="w-100">
+              <input type="hidden" name="nome" value="<%= candidata.nome %>">
+              <label for="firstName" class="form-label">Fantasia</label>
+              <input  type="tel" oninput="verifAvali(this)" class="form-control inputNumber" name="fantasia" value="<%= nota.fantasia %>" id="fantasia">
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div class="w-100">
+                <label for="firstName" class="form-label">Beleza plasticas</label>
+                <input type="tel" oninput="verifAvali(this)" class="form-control inputNumber" name="beleza" value="<%= nota.beleza %>" id="beleza">
+              </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div class="w-100">
+                <label for="firstName" class="form-label">Desfile</label>
+                <input  type="tel" oninput="verifAvali(this)" class="form-control inputNumber" name="desfile" value="<%= nota.desfile %>" id="desfile">
+              </div>
+          </li>
+    
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div class="w-100">
+                <label for="firstName" class="form-label">desconto</label>
+                <input type="tel" oninput="verifAvali(this)" class="form-control inputNumber" name="desconto" id="desconto" value="<%= nota.desconto %>"  name="desconto">
+              </div>
+          </li>
+    
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total de pontos</span>
+            <strong id="resultado"> <%= nota.total %></strong>
+          </li>
+        </ul>
+        <div class="card p-2">
+          <div class="input-group">
+            <button type="submit" class="btn btn-secondary">Avaliar</button>
+          </div>
+        </div>
+      </form>
+      <!-- Button trigger modal -->
+    <div class="card p-2">
+      <div class="input-group">
+        <button type="button" onclick="final()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Finalizar avaliação
+        </button>
+      </div>
+    </div>
+  </div>
+  <% }else if(nota.status == true){ %>
+    <div class="col-md-5 col-lg-4 order-md-last">
+    <form>
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Pontuação</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div class="w-100">
+              <label for="firstName" class="form-label">Fantasia</label>
+              <input  type="tel" class="form-control inputNumber" disabled value="<%= nota.fantasia %>" id="fantasia" required>
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div class="w-100">
+                <label for="firstName" class="form-label">Beleza plasticas</label>
+                <input type="tel" class="form-control inputNumber" disabled value="<%= nota.beleza %>" id="beleza" required>
+              </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div class="w-100">
+                <label for="firstName" class="form-label">Desfile</label>
+                <input  type="tel" class="form-control inputNumber" disabled value="<%= nota.desfile %>" id="desfile"  required>
+              </div>
+          </li>
+    
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div class="w-100">
+                <label for="firstName" class="form-label">desconto</label>
+                <input type="tel" class="form-control inputNumber" disabled value="<%= nota.desconto %>"  name="desconto" required>
+              </div>
+          </li>
+    
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total de pontos</span>
+            <strong id="resultado"> <%= nota.total %></strong>
+          </li>
+        </ul>
+        
+      </form>
+      </div>
+<% } %>

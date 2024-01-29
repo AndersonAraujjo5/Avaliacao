@@ -1,0 +1,37 @@
+<%- include("includes/head") %>
+  <section class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% if(candidata) { candidata.forEach(e=> { %>
+        <div class="col">
+          <div class="card mb-3">
+            <img src="<%=  e.img %>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= e.nome %>
+              </h5>
+              <p class="card-text mb-2">Idade: <%= e.idade %>
+              </p>
+              <p class="card-text mb-2">Representa: <%= e.representa %>
+              </p>
+              <% notas.forEach(nota=> {
+                if(nota.nome == e.nome) {
+                %>
+                <p><b>Fantasia</b>:<%= nota.fantasia %>
+                </p>
+                <p><b>Beleza plastica</b>:<%= nota.beleza %>
+                </p>
+                <p><b>Desfile</b>:<%= nota.desfile %>
+                </p>
+                <p><b>Desconto</b>:<%= nota.desconto %>
+                </p>
+                <% } } ) %>
+
+                  <a href="avaliar/<%= e.id %>" class="btn btn-primary mt-3">Avaliar</a>
+            </div>
+          </div>
+        </div>
+        <% }); } %>
+    </div>
+
+  </section>
+  <%- include("includes/footer") %>
